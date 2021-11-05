@@ -30,9 +30,14 @@ func changeState(at item: Int) -> Bool {
 }
 
 func saveData() {
-    
+    UserDefaults.standard.set(ToDoItems, forKey: "ToDoDataKey")
+    UserDefaults.standard.synchronize()
 }
 
 func loadData() {
-    
+    if let array = UserDefaults.standard.array(forKey: "ToDoDataKey") as? [[String: Any]] {
+        ToDoItems = array
+    } else {
+        ToDoItems = []
+    }
 }
